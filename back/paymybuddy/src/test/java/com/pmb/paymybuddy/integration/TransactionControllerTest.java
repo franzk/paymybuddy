@@ -40,7 +40,7 @@ import com.pmb.paymybuddy.repository.UserRepository;
 class TransactionControllerTest {
 
 	private static final String loggedUserEmail = "user1@example.com";
-	private static final String populateScriptFilePath = "file:./integration_test_data/populateDB.sql";
+	private static final String populateScriptFilePath = "file:./database_files/integration_test_data/populateDB.sql";
 
 	@Autowired
 	public MockMvc mockMvc;

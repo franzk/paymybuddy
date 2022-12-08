@@ -38,7 +38,7 @@ class TransferControllerTestIT {
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
 	private static final String loggedUserEmail = "user1@example.com";
-	private static final String populateScriptFilePath = "file:./integration_test_data/populateDB.sql";
+	private static final String populateScriptFilePath = "file:./database_files/integration_test_data/populateDB.sql";
 
 	@Autowired
 	public MockMvc mockMvc;

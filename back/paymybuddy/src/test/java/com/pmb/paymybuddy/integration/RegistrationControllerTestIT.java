@@ -38,7 +38,7 @@ class RegistrationControllerTestIT {
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
-	private static final String populateScriptFilePath = "file:./integration_test_data/populateDB.sql";
+	private static final String populateScriptFilePath = "file:./database_files/integration_test_data/populateDB.sql";
 
 	@Autowired
 	public MockMvc mockMvc;
