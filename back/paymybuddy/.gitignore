@@ -1,4 +1,5 @@
-/external_config/*.*
+/external_config/*
+!/external_config/*.md
 
 HELP.md
 target/
