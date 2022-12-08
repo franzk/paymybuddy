@@ -1,0 +1,19 @@
+<div class="col-md-8 mx-auto mb-5">
+  <h5 >Ajouter un ami</h5>
+
+  <div class="p-2 form-paymybuddy">
+    <form [formGroup]="newFriendForm" class="col-md-12">
+
+      <div class="form-group has-icon mt-3">
+        <label for="friendemail">Adresse email du nouvel ami</label>
+        <span class="fa fa-envelope form-control-feedback"></span>
+        <input type="email" class="form-control" id="friendemail" name="friendemail" formControlName="email"  placeholder="Email">
+      </div>
+
+      <p class="col-md-6 mx-auto text-center">
+        <button type="submit" (click)="onSubmitForm()" [disabled]="newFriendForm.invalid" class="btn btn-primary mr-2">Enregistrer</button>&nbsp;
+        <a [routerLink]="['/transfer']" class="ml-2">Annuler</a>
+      </p>
+    </form>
+    <div *ngIf="error" class="alert-danger">{{ error }}</div>
+  </div>

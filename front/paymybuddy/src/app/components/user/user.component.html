@@ -1,0 +1,7 @@
+<div *ngIf="user$ | async as user" class="col-md-8 mx-auto mb-5">
+
+  <h3 class="mb-3 mx-auto text-center"><i class="fa fa-user btn-paymybuddy"></i> {{ user.name }} ({{ user.email }})</h3>
+
+  <h5 class="alert-success">Mon solde est de {{ user.balance!.toFixed(2) }} €</h5>
+
+</div>

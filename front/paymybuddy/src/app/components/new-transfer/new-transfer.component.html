@@ -1,0 +1,38 @@
+<div class="col-md-8 mx-auto mb-5">
+
+  <div class="row">
+    <h5 class="col-md-3">Envoyer de l'argent</h5>
+    <div class="col-md-9 d-flex">
+      <a class="ml-auto btn btn-primary pl-4 pr-4" [routerLink]="['/newfriend']">Ajouter un ami</a>
+    </div>
+
+  </div>
+
+  <div class="form-paymybuddy p-2">
+    <forms [formGroup]="newTransferForm" class="row justify-content-center mt-3">
+
+      <div class="col-md-4">
+        <select *ngIf="(friends$ | async)" name="friends" formControlName="friends" class="form-control">
+          <option value="default">Choisissez un ami</option>
+          <option *ngFor="let friend of friends$ | async" value="{{ friend.email }}">{{ friend.name }} ({{ friend.email }})</option>
+        </select>
+      </div>
+
+      <p class="col-md-4">
+        <input type="number" id="amount" formControlName="amount" placeholder="montant" class="form-control">
+      </p>
+
+      <p>
+        <button type="submit" (click)="onSubmitForm()" [disabled]="newTransferForm.invalid" class="btn btn-paymybuddy pl-4 pr-4">Payer</button>
+      </p>
+
+    </forms>
+
+    <div class="small">(i) Lorsque vous effectuez un transfert, une commission de 0,5% vous est déduite en plus.</div>
+    <div *ngIf="error" class="alert-danger">{{ error }}</div>
+
+  </div>
+
+</div>
+
+<app-transactions></app-transactions>

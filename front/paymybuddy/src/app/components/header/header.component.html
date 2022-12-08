@@ -1,0 +1,13 @@
+<nav class="row">
+  <div class="col-md-6" >
+    <a class="btn btn-paymybuddy formtitle col-md-4"  [routerLink]="['/home']">Pay My Buddy</a>
+  </div>
+
+  <div class="col-md-6 d-flex" *ngIf="loginService.isLogged$ | async">
+    <span class="btn header-menu ml-auto" [routerLink]="['/home']">Accueil</span>
+    <span class="btn header-menu" [routerLink]="['/transfer']">Transfert</span>
+    <span class="btn header-menu" [routerLink]="['/profile']">Profil</span>
+    <span class="btn header-menu">Contact</span>
+    <span name="logout" (click)="logout()" class="btn header-menu">Déconnexion</span>
+  </div>
+</nav>

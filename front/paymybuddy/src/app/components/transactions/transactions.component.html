@@ -1,0 +1,45 @@
+<div class="col-md-8 mx-auto justify-content-center align-items-center">
+
+  <h5>Mes transactions</h5>
+
+  <div *ngIf="transactions$ | async as transactions" class="">
+    <table class="table">
+      <thead class="transactions-header">
+        <tr>
+          <th>Date</th>
+          <th>Ami</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions.transactions! | paginate: {
+          itemsPerPage: transactions.itemsPerPage,
+          currentPage:transactions.currentPage!+1,
+          totalItems: transactions.totalItems} ">
+          <td>{{ transaction.date | date : 'dd/MM/yyyy, HH:mm:ss' }}</td>
+          <td>{{ friend(transaction) }}</td>
+          <td>{{ transaction.amount!.toFixed(2) }} €</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="transactions.totalItems !== 0; else no_transaction" class="pagination-controls">
+      <pagination-controls
+      (pageChange)="handlePageChange($event)"
+      (pageBoundsCorrection)="handlePageChange($event)"
+      previousLabel=""
+      nextLabel=""
+      [responsive]="true"
+      [directionLinks]="true"
+      [autoHide]="true"
+      >
+      </pagination-controls>
+    </p>
+
+    <ng-template #no_transaction>
+      <p class="pagination-controls">
+        Aucune transaction
+      </p>
+    </ng-template>
+  </div>
+</div>

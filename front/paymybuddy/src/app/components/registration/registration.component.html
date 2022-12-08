@@ -1,0 +1,43 @@
+<div class="row col-md-5 border rounded mt-5 mx-auto justify-content-center">
+
+  <h2 class="mt-2 btn-paymybuddy rounded">S'enregistrer sur Pay My Buddy</h2>
+
+  <div *ngIf="displayForm || error">
+    <forms [formGroup]="registrationForm">
+
+      <div class="form-group has-icon mt-3">
+        <span class="fa fa-envelope form-control-feedback"></span>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Adresse email">
+      </div>
+
+      <div class="form-group has-icon mt-4">
+        <span class="fa fa-user form-control-feedback"></span>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Nom">
+      </div>
+
+      <div class="form-group has-icon mt-4">
+        <span class="fa fa-lock form-control-feedback"></span>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Mot de passe">
+      </div>
+
+      <div class="mx-auto text-center mt-5">
+        <p>
+          <input type="button" class="btn btn-primary col-md-6" (click)="register()"  [disabled]="registrationForm.invalid" value="S'enregistrer">
+        </p>
+        <p>
+          Vous possédez déjà un compte ? <a routerLink="/login">Connectez vous</a>
+        </p>
+      </div>
+    </forms>
+  </div>
+  <div class="col-md-12 text-center mb-2">
+    <div *ngIf="loading && !error" class="alert-info">
+      Veuillez patienter, nous traitons votre demande...
+    </div>
+    <div *ngIf="registerOK" class="mx mx-auto alert-success">
+      <p>Un email de validation vous a été envoyé. Vérifiez votre boîte mail</p>
+      <p>Continuer vers <a routerLink="/login">PayMyBuddy</a></p>
+    </div>
+    <div *ngIf="error" class="alert-danger">{{ error }}</div>
+  </div>
+</div>
