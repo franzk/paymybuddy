@@ -50,8 +50,8 @@ import lombok.Data;
 					+ " sender_id AS senderId, s.email AS senderEmail, s.name AS senderName, "
 					+ " recipient_id AS recipientId, r.email AS recipientEmail, r.name AS recipientName "
 			+ " FROM transaction AS t "
-				+ " INNER JOIN user as s ON s.user_id = t.sender_id "
-				+ " INNER JOIN user as r ON r.user_id = t.recipient_id "
+				+ " LEFT JOIN user as s ON s.user_id = t.sender_id "
+				+ " LEFT JOIN user as r ON r.user_id = t.recipient_id "
 			+ " WHERE t.sender_id = ?1 OR t.recipient_id = ?1 "
 			+ " ORDER BY t.date DESC ",
 		resultSetMapping = "userTransactionsResult"),
@@ -72,7 +72,7 @@ public class Transaction {
 					CascadeType.MERGE 
 					}
 			)
-	@JoinColumn(name="sender_id", nullable=false)
+	@JoinColumn(name="sender_id", nullable=true)
 	private User sender;
 	
 	@ManyToOne(
@@ -81,7 +81,7 @@ public class Transaction {
 					CascadeType.MERGE 
 					}
 			)
-	@JoinColumn(name="recipient_id", nullable=false)
+	@JoinColumn(name="recipient_id", nullable=true)
 	private User recipient;
 	
 	@Column(nullable=false)

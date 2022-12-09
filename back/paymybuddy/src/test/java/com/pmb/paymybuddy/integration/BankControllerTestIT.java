@@ -107,7 +107,7 @@ class BankControllerTestIT {
 			.andDo(print())
 			.andExpect(status().isOk());
 		
-		List<Transaction> userTransactions = (List<Transaction>) transactionRepository.findByRecipient(loggedUser);
+		List<Transaction> userTransactions = (List<Transaction>) transactionRepository.findBySender(loggedUser);
 		Transaction result = userTransactions.get(0);
 		assertEquals(result.getAmountSent(), testAmount, 0.01);
 		assertThat(result.getDate()).isAfter(processTime);
