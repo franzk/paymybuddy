@@ -54,11 +54,13 @@ export class RegistrationComponent implements OnInit {
     }
     this.registrationService.register(newUser).pipe(
       tap(() => {
+          console.log('register tap');
           this.loading = false;
           this.registerOK = true;
           this.displayForm = false;
         }),
         catchError(err => {
+          console.log('error register');
           this.error = err.error;
           return EMPTY;
         })

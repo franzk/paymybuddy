@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
 @Profile("test")
-@PropertySource(value = "file:./external_config/datasource_tests.properties" )
+@PropertySource(value = "file:./external_config/datasource_test.properties" )
 public class DataSourceConfig {
 
 	@Value("${spring.datasource.url}")

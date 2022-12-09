@@ -94,6 +94,6 @@ public class Transaction {
 	double amountSent;	
 
 	@Column(nullable=false)
-	String type;	
+	String type;	   /// ENUM AVEC STRING
 	
 }

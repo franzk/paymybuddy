@@ -54,7 +54,6 @@ public class RegistrationService {
 		unverifiedUser.setEmail(email);
 		unverifiedUser.setName(name);
 		
-	
 		this.sendVerificationEmail(unverifiedUser);
 	
 		String encodedPassword = passwordEncoder.encode(password);
