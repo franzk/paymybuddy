@@ -33,7 +33,6 @@ public class BankService {
 		double amountPostFee = amount * (1 - Constants.FEE); // on retient la commission
 		
 		Transaction newTransaction = new Transaction();
-		//newTransaction.setSender(user);
 		newTransaction.setRecipient(user);
 		newTransaction.setDate(LocalDateTime.now());
 		newTransaction.setAmountReceived(amountPostFee);
@@ -63,7 +62,6 @@ public class BankService {
 		
 		Transaction newTransaction = new Transaction();
 		newTransaction.setSender(user);
-		//newTransaction.setRecipient(user);
 		newTransaction.setDate(LocalDateTime.now());
 		newTransaction.setAmountSent(amount);
 		newTransaction.setAmountReceived(0);

@@ -1,4 +1,4 @@
-/external_config/*
+/external_config/*.properties
 !/external_config/*.md
 
 HELP.md

@@ -15,6 +15,7 @@ export class BankComponent implements OnInit {
   error?: string;
   type?: string;
   title?: string;
+  feeAlert?:string;
 
   constructor(private router:Router,
     private formBuilder: FormBuilder,
@@ -27,8 +28,10 @@ export class BankComponent implements OnInit {
 
     if (this.type === "credit") {
       this.title = "Créditez mon compte Pay My Buddy";
+      this.feeAlert = "(i) Une commission de 0,5% sera retenue sur cette transaction."
     } else {
       this.title = "Transférer vers mon compte bancaire";
+      this.feeAlert = "(i) Une commission de 0,5% sera appliquée lors du virement vers votre banque."
     }
     this.initform();
   }
