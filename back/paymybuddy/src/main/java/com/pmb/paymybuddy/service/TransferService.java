@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.pmb.paymybuddy.exception.NegativeTransactionException;
@@ -25,7 +26,7 @@ public class TransferService {
 	@Autowired
 	private UserService userService;
 
-	@Transactional(rollbackOn = { UserNotFoundException.class, NotEnoughCreditException.class,NegativeTransactionException.class })
+	@Transactional(rollbackOn = { IllegalArgumentException.class, OptimisticLockingFailureException.class })
 	public Transaction createTransfer(User sender, String recipientEmail, double amount)
 			throws UserNotFoundException, NotEnoughCreditException, NegativeTransactionException {
 

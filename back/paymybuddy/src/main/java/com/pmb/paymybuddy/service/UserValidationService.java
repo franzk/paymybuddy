@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.pmb.paymybuddy.exception.TooLateEmailValidationException;
@@ -13,6 +14,7 @@ import com.pmb.paymybuddy.exception.UnverifiedUserNotFoundException;
 import com.pmb.paymybuddy.model.UnverifiedUser;
 import com.pmb.paymybuddy.model.User;
 import com.pmb.paymybuddy.repository.UnverifiedUserRepository;
+import com.pmb.paymybuddy.repository.UserRepository;
 
 @Service
 public class UserValidationService {
@@ -21,9 +23,9 @@ public class UserValidationService {
 	private UnverifiedUserRepository unverifiedUserRepository;
 
 	@Autowired
-	private UserService userService;
+	private UserRepository userRepository;
 
-	@Transactional(rollbackOn = { TooLateEmailValidationException.class, UnverifiedUserNotFoundException.class })
+	@Transactional(rollbackOn = { IllegalArgumentException.class, OptimisticLockingFailureException.class  })
 	public User validateUser(String validationToken)
 			throws TooLateEmailValidationException, UnverifiedUserNotFoundException {
 
@@ -42,7 +44,7 @@ public class UserValidationService {
 		user.setPassword(unverifiedUser.getPassword());
 
 		unverifiedUserRepository.delete(unverifiedUser);
-		return userService.save(user);
+		return userRepository.save(user);
 	}
 
 	

@@ -3,8 +3,10 @@ package com.pmb.paymybuddy.service;
 import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.pmb.paymybuddy.exception.NegativeTransactionException;
@@ -13,6 +15,7 @@ import com.pmb.paymybuddy.model.Transaction;
 import com.pmb.paymybuddy.model.TypeTransaction;
 import com.pmb.paymybuddy.model.User;
 import com.pmb.paymybuddy.repository.TransactionRepository;
+import com.pmb.paymybuddy.repository.UserRepository;
 
 @Service
 public class BankService {
@@ -21,9 +24,9 @@ public class BankService {
 	private TransactionRepository transactionRepository;
 	
 	@Autowired
-	private UserService userService;
+	private UserRepository userRepository;
 	
-	@Transactional(rollbackOn = { NegativeTransactionException.class })
+	@Transactional(rollbackOn = { IllegalArgumentException.class, OptimisticLockingFailureException.class })
 	public Transaction receiveFromBank(User user, double amount) throws NegativeTransactionException {
 
 		if (amount <0) {
@@ -40,14 +43,14 @@ public class BankService {
 		newTransaction.setType(TypeTransaction.BANK);
 
 		user.setBalance(user.getBalance() + amountPostFee);
-		userService.save(user);
+		userRepository.save(user);
 		
 		return transactionRepository.save(newTransaction);
 
 	}
 
 	
-	@Transactional(rollbackOn = { NegativeTransactionException.class, NotEnoughCreditException.class })
+	@Transactional(rollbackOn = { IllegalArgumentException.class, OptimisticLockingFailureException.class })
 	public Transaction sendToBank(User user, double amount) throws NegativeTransactionException, NotEnoughCreditException {
 		
 		if (amount < 0) {
@@ -68,7 +71,7 @@ public class BankService {
 		newTransaction.setType(TypeTransaction.BANK);
 		
 		user.setBalance(user.getBalance() - amount);
-		userService.save(user);
+		userRepository.save(user);
 		
 		return transactionRepository.save(newTransaction);
 	}
