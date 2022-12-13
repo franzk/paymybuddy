@@ -21,6 +21,7 @@ import com.pmb.paymybuddy.exception.TooLateEmailValidationException;
 import com.pmb.paymybuddy.exception.UnverifiedUserNotFoundException;
 import com.pmb.paymybuddy.model.UnverifiedUser;
 import com.pmb.paymybuddy.repository.UnverifiedUserRepository;
+import com.pmb.paymybuddy.repository.UserRepository;
 
 import net.bytebuddy.utility.RandomString;
 
@@ -40,7 +41,7 @@ class UserValidationServiceTest {
 	private EmailService emailSendService;
 	
 	@Mock
-	private UserService userService;
+	private UserRepository userRepository;
 	
 
 	
@@ -61,7 +62,7 @@ class UserValidationServiceTest {
 		serviceUnderTest.validateUser(RandomString.make(64));
 
 		// Assert
-		verify(userService, times(1)).save(any());
+		verify(userRepository, times(1)).save(any());
 	}
 	
 	@Test

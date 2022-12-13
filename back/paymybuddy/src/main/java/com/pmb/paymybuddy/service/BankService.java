@@ -3,7 +3,6 @@ package com.pmb.paymybuddy.service;
 import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;

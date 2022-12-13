@@ -15,6 +15,7 @@ import com.pmb.paymybuddy.exception.NegativeTransactionException;
 import com.pmb.paymybuddy.exception.NotEnoughCreditException;
 import com.pmb.paymybuddy.model.User;
 import com.pmb.paymybuddy.repository.TransactionRepository;
+import com.pmb.paymybuddy.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
 class BankServiceTest {
@@ -26,7 +27,7 @@ class BankServiceTest {
 	private TransactionRepository transactionRepository;
 
 	@Mock
-	private UserService userService;
+	private UserRepository userRepository;
 
 	@Test
 	void createTransferTest() throws NegativeTransactionException, NotEnoughCreditException {
@@ -40,7 +41,7 @@ class BankServiceTest {
 		serviceUnderTest.receiveFromBank(sender, testAmount);
 
 		// Assert
-		verify(userService, times(1)).save(any(User.class));
+		verify(userRepository, times(1)).save(any(User.class));
 	}
 	
 	@Test
@@ -67,7 +68,7 @@ class BankServiceTest {
 		serviceUnderTest.sendToBank(sender, testAmount);
 
 		// Assert
-		verify(userService, times(1)).save(any(User.class));
+		verify(userRepository, times(1)).save(any(User.class));
 	}
 	
 	@Test
