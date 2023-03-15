@@ -1,5 +1,14 @@
 # paymybuddy
 
+<img src="https://img.shields.io/badge/-JAVA%2011-00A7BB?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/-SPRING%20BOOT%202.7.5-6eb442?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/-SPRING%20SECURITY-1a5900?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/-SPRING%20WEB-397200?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/-SPRING%20DATA%20JPA-8db411?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/-MYSQL-006189?style=for-the-badge&logo=mysql&logoColor=white"> 
+<br> <img src="https://img.shields.io/badge/-MAVEN-black?style=for-the-badge&logo=apachemaven&logoColor=white"> <img src="https://img.shields.io/badge/-JACOCO-810a00?style=for-the-badge">
+<br><img src="https://img.shields.io/badge/-ANGULAR-c41829?style=for-the-badge&logo=angular&logoColor=white"> 
+
+Pay My Buddy est une application web qui fait l'objet du Projet 6 de la formation développement d'applications JAVA d'Openclassrooms. Cette appli permettrait aux clients de transférer de l'argent pour gérer leurs finances ou payer leurs amis.  
+Le back office est en Java Spring Boot, le front office en Angular.  
+L'énoncé fournit la maquette de l'UI qui doit être intégrée telle quelle.
+
+
 ## Getting Started
 
 ### 1. Clone the application
